@@ -1,0 +1,47 @@
+【1】index.html の <head> 内へ追加
+※すでに同じ title、description、favicon、OGP がある場合は、重複させず置き換えてください。
+
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#22c7b8">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<meta property="og:title" content="沖縄県立高校ずかん｜運命の学校を探せ">
+<meta property="og:description" content="合格の目安・倍率・先輩たちのリアルな点数まで。沖縄県立高校を、ふざけた見た目でまじめに調べる。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://okinawa-zukan.jp/">
+<meta property="og:image" content="https://okinawa-zukan.jp/ogp.png">
+<meta property="og:site_name" content="沖縄県立高校ずかん">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="沖縄県立高校ずかん｜運命の学校を探せ">
+<meta name="twitter:description" content="合格の目安・倍率・先輩たちのリアルな点数まで。">
+<meta name="twitter:image" content="https://okinawa-zukan.jp/ogp.png">
+
+
+【2】index.html の </body> の直前へ追加
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js').catch(error => {
+        console.error('Service Worker registration failed:', error);
+      });
+    });
+  }
+</script>
+
+
+【3】GitHubのリポジトリ直下へアップロードするファイル
+
+favicon.ico
+favicon-32.png
+apple-touch-icon.png
+icon-192.png
+icon-512.png
+icon-maskable-512.png
+ogp.png
+manifest.webmanifest
+sw.js
