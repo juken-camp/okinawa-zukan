@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-
-  <head>
+  
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7P4J29165M"></script>
   <script>
@@ -16,13 +15,40 @@
   <!-- ここから既存のtitleやmetaなど -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#FFC800">
-<title>高校ずかん｜沖縄県立高校の入試データまるごと検索</title>
-<meta property="og:title" content="高校ずかん｜沖縄県立高校の入試データ検索">
-<meta property="og:description" content="見た目はおもちゃ、中身はガチ。県立59校の合格目安・倍率・進路実績を図鑑スタイルで検索。">
-<meta property="og:type" content="website">
+
+<title>沖縄県立高校ずかん｜運命の学校を探せ</title>
 <meta name="description" content="見た目はおもちゃ、中身はガチ。沖縄県立高校59校・164学科の合格目安・倍率・志願状況・進路実績・追跡調査データを図鑑スタイルで検索。JUKEN CAMP運営。">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTYiIGZpbGw9IiNGRkM4MDAiIHN0cm9rZT0iIzFEMUQxRCIgc3Ryb2tlLXdpZHRoPSI0Ii8+PHRleHQgeD0iMzIiIHk9IjQ0IiBmb250LXNpemU9IjM0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9ImJvbGQiPvCfj6s8L3RleHQ+PC9zdmc+">
+<link rel="canonical" href="https://okinawa-zukan.jp/">
+
+<!-- PWA・ホーム画面表示 -->
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#22c7b8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="高校ずかん">
+
+<!-- ファビコン・アプリアイコン -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<!-- OGP -->
+<meta property="og:title" content="沖縄県立高校ずかん｜運命の学校を探せ">
+<meta property="og:description" content="合格の目安・倍率・先輩たちのリアルな点数まで。沖縄県立高校を、ふざけた見た目でまじめに調べる。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://okinawa-zukan.jp/">
+<meta property="og:image" content="https://okinawa-zukan.jp/ogp.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="沖縄県立高校ずかん">
+<meta property="og:locale" content="ja_JP">
+
+<!-- X・SNS共有 -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="沖縄県立高校ずかん｜運命の学校を探せ">
+<meta name="twitter:description" content="合格の目安・倍率・先輩たちのリアルな点数まで。">
+<meta name="twitter:image" content="https://okinawa-zukan.jp/ogp.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap" rel="stylesheet">
@@ -1453,6 +1479,16 @@ $("#detail").addEventListener("click", e => {
     if (SCHOOL_GROUPS.some(g => g.name === name)) selectSchool(name);
   }
 })();
+</script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js').catch(error => {
+        console.error('Service Worker registration failed:', error);
+      });
+    });
+  }
 </script>
 </body>
 </html>
