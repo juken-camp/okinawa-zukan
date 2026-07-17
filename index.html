@@ -1,54 +1,15 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7P4J29165M"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-7P4J29165M');
-  </script>
-
-  <!-- ここから既存のtitleやmetaなど -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-
-<title>沖縄県立高校ずかん｜運命の学校を探せ</title>
-<meta name="description" content="見た目はおもちゃ、中身はガチ。沖縄県立高校59校・164学科の合格目安・倍率・志願状況・進路実績・追跡調査データを図鑑スタイルで検索。JUKEN CAMP運営。">
-<link rel="canonical" href="https://okinawa-zukan.jp/">
-
-<!-- PWA・ホーム画面表示 -->
-<link rel="manifest" href="/manifest.webmanifest">
-<meta name="theme-color" content="#22c7b8">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="高校ずかん">
-
-<!-- ファビコン・アプリアイコン -->
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-
-<!-- OGP -->
-<meta property="og:title" content="沖縄県立高校ずかん｜運命の学校を探せ">
-<meta property="og:description" content="合格の目安・倍率・先輩たちのリアルな点数まで。沖縄県立高校を、ふざけた見た目でまじめに調べる。">
+<meta name="theme-color" content="#FFC800">
+<title>高校ずかん｜沖縄県立高校の入試データまるごと検索</title>
+<meta property="og:title" content="高校ずかん｜沖縄県立高校の入試データ検索">
+<meta property="og:description" content="見た目はおもちゃ、中身はガチ。県立59校の合格目安・倍率・進路実績を図鑑スタイルで検索。">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://okinawa-zukan.jp/">
-<meta property="og:image" content="https://okinawa-zukan.jp/ogp.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:site_name" content="沖縄県立高校ずかん">
-<meta property="og:locale" content="ja_JP">
-
-<!-- X・SNS共有 -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="沖縄県立高校ずかん｜運命の学校を探せ">
-<meta name="twitter:description" content="合格の目安・倍率・先輩たちのリアルな点数まで。">
-<meta name="twitter:image" content="https://okinawa-zukan.jp/ogp.png">
-
+<meta name="description" content="見た目はおもちゃ、中身はガチ。沖縄県立高校59校・164学科の合格目安・倍率・志願状況・進路実績・追跡調査データを図鑑スタイルで検索。JUKEN CAMP運営。">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTYiIGZpbGw9IiNGRkM4MDAiIHN0cm9rZT0iIzFEMUQxRCIgc3Ryb2tlLXdpZHRoPSI0Ii8+PHRleHQgeD0iMzIiIHk9IjQ0IiBmb250LXNpemU9IjM0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9ImJvbGQiPvCfj6s8L3RleHQ+PC9zdmc+">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap" rel="stylesheet">
@@ -62,7 +23,7 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-html,body{overflow-x:clip;max-width:100%}
+html,body{overflow-x:clip;overflow-x:hidden;max-width:100%;width:100%}
 body{font-family:var(--body);font-weight:500;background:var(--paper);color:var(--ink);line-height:1.6;
   -webkit-tap-highlight-color:transparent;
   padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right);
@@ -83,18 +44,18 @@ body.detail header.top{display:none}
 
 /* ============ 検索バー ============ */
 .searchbar{position:sticky;top:0;z-index:50;padding:12px 0 10px;background:linear-gradient(var(--paper) 82%,transparent)}
-.sb-inner{display:flex;gap:10px;align-items:center}
+.sb-inner{display:flex;gap:10px;align-items:center;min-width:0}
 .homebtn{display:none;flex:none;font-family:var(--pop);font-size:15px;background:var(--yellow);border:var(--bd);border-radius:14px;padding:9px 12px;box-shadow:3px 3px 0 var(--ink);transition:transform .08s}
 .homebtn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
 body.detail .homebtn{display:block}
-.searchbox{flex:1;display:flex;align-items:center;gap:8px;background:#fff;border:var(--bd);border-radius:16px;padding:10px 14px;box-shadow:4px 4px 0 var(--ink);position:relative}
+.searchbox{flex:1;min-width:0;display:flex;align-items:center;gap:8px;background:#fff;border:var(--bd);border-radius:16px;padding:10px 14px;box-shadow:4px 4px 0 var(--ink);position:relative}
 .searchbox .icon{flex:none;font-size:18px}
 #q{flex:1;min-width:0;border:0;outline:0;background:none;font:inherit;font-weight:700;font-size:16px;appearance:none;-webkit-appearance:none}
 #q::-webkit-search-cancel-button,#q::-webkit-search-decoration{-webkit-appearance:none;display:none}
 #q::placeholder{color:#B9AE8E;font-weight:500}
 #clearBtn{flex:none;display:none;border:2.5px solid var(--ink);background:var(--pink);color:#fff;border-radius:50%;width:24px;height:24px;font-size:13px;font-weight:800;line-height:1}
 #clearBtn.show{display:block}
-.sug{position:absolute;left:-3px;right:-3px;top:calc(100% + 10px);background:#fff;border:var(--bd);border-radius:16px;box-shadow:6px 6px 0 var(--ink);overflow:hidden;z-index:60;display:none;max-height:min(420px,58vh);overflow-y:auto}
+.sug{position:absolute;left:0;right:0;top:calc(100% + 10px);background:#fff;border:var(--bd);border-radius:16px;box-shadow:6px 6px 0 var(--ink);overflow:hidden;z-index:60;display:none;max-height:min(420px,58vh);overflow-y:auto}
 .sug.show{display:block}
 .sug-item{display:flex;align-items:center;gap:10px;min-height:52px;width:100%;text-align:left;border:0;background:none;padding:11px 16px;font-size:15px;border-bottom:2px dashed #EFE6CC}
 .sug-item:last-child{border-bottom:0}
@@ -115,9 +76,110 @@ body.detail .homebtn{display:block}
 .stat-pill:nth-child(odd){transform:rotate(-1.2deg)}
 .stat-pill:nth-child(even){transform:rotate(1.2deg)}
 .stat-pill b{color:var(--pink)}
-.gacha{font-family:var(--pop);font-size:16px;background:var(--purple);color:#fff;border:var(--bd);border-radius:16px;padding:13px 22px;box-shadow:5px 5px 0 var(--ink);transition:transform .08s}
-.gacha:hover{transform:translate(-1px,-1px);box-shadow:6px 6px 0 var(--ink)}
-.gacha:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+.shindan{font-family:var(--pop);font-size:17px;background:var(--pink);color:#fff;border:var(--bd);border-radius:18px;padding:15px 26px;box-shadow:6px 6px 0 var(--ink);transition:transform .08s;animation:breathe 2.4s ease-in-out infinite}
+@keyframes breathe{0%,100%{transform:scale(1) rotate(-.5deg)}50%{transform:scale(1.035) rotate(.5deg)}}
+.shindan:active{transform:translate(3px,3px) scale(1);box-shadow:1px 1px 0 var(--ink);animation:none}
+.zcount{display:none;flex:none;font-size:11.5px;font-weight:800;background:#fff;border:2.5px solid var(--ink);border-radius:999px;padding:5px 10px;box-shadow:2px 2px 0 var(--ink);white-space:nowrap}
+.zcount b{color:var(--pink)}
+body.detail .zcount{display:block}
+
+/* ============ 診断オーバーレイ ============ */
+.dovl{position:fixed;inset:0;z-index:110;display:none;align-items:flex-start;justify-content:center;background:rgba(29,29,29,.6);padding:24px 16px;overflow-y:auto}
+.dovl.show{display:flex}
+.dcard-q{width:min(460px,94vw);background:var(--paper);border:var(--bd);border-radius:22px;box-shadow:8px 8px 0 var(--ink);padding:22px 18px;margin:auto 0;position:relative}
+.dq-close{position:absolute;top:-12px;right:-10px;width:34px;height:34px;border:2.5px solid var(--ink);border-radius:50%;background:var(--pink);color:#fff;font-size:16px;font-weight:800;box-shadow:2px 2px 0 var(--ink)}
+.dq-prog{display:flex;gap:5px;margin-bottom:14px}
+.dq-prog span{flex:1;height:8px;border:2px solid var(--ink);border-radius:99px;background:#EFE8D2}
+.dq-prog span.on{background:var(--pink)}
+.dq-icon{font-size:34px;text-align:center}
+.dq-q{font-family:var(--pop);font-size:18px;text-align:center;margin:8px 0 16px;line-height:1.5}
+.dq-opts{display:grid;gap:9px}
+.dq-opt{text-align:left;font-size:14.5px;font-weight:800;background:#fff;border:2.5px solid var(--ink);border-radius:14px;padding:12px 14px;box-shadow:3px 3px 0 var(--ink);transition:transform .07s}
+.dq-opt:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.dq-back{margin-top:12px;font-size:12.5px;font-weight:800;background:none;border:0;color:#8B7E5E;text-decoration:underline}
+
+/* 診断結果 */
+.dr-title{font-family:var(--pop);font-size:20px;text-align:center;line-height:1.5}
+.dr-item{display:flex;gap:12px;align-items:center;background:#fff;border:var(--bd);border-radius:16px;padding:12px;margin-top:12px;box-shadow:4px 4px 0 var(--ink);position:relative;text-align:left;width:100%}
+.dr-item.first{border-width:3.5px;box-shadow:5px 5px 0 var(--pink)}
+.dr-rank{position:absolute;top:-11px;left:-8px;font-family:var(--pop);font-size:13px;background:var(--yellow);border:2.5px solid var(--ink);border-radius:9px;padding:1px 9px;transform:rotate(-4deg)}
+.dr-item img{flex:none;width:86px;height:58px;object-fit:cover;border:2.5px solid var(--ink);border-radius:10px;background:#EFE8D2}
+.dr-name{font-family:var(--pop);font-size:16.5px}
+.dr-sub{font-size:11.5px;font-weight:800;color:#8B7E5E}
+.dr-pct{margin-left:auto;flex:none;text-align:center}
+.dr-pct b{font-family:var(--pop);font-size:23px;color:var(--pink)}
+.dr-pct small{display:block;font-size:9.5px;font-weight:800;color:#8B7E5E}
+.dr-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:16px}
+.dr-btn{font-family:var(--pop);font-size:13.5px;border:var(--bd);border-radius:13px;padding:11px 8px;box-shadow:3px 3px 0 var(--ink);background:#fff;transition:transform .07s}
+.dr-btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.dr-btn.share{background:var(--teal);color:#fff}
+.dr-note{font-size:10.5px;font-weight:700;color:#8B7E5E;margin-top:12px;text-align:center;line-height:1.7}
+
+/* ゲットスタンプ */
+.getstamp{position:absolute;top:22px;right:14px;font-family:var(--pop);font-size:13px;color:var(--pink);border:3px solid var(--pink);border-radius:10px;padding:3px 10px;transform:rotate(9deg);background:rgba(255,255,255,.85);pointer-events:none}
+.getstamp.pop{animation:stamp .4s cubic-bezier(.2,2,.4,1)}
+@keyframes stamp{0%{transform:rotate(9deg) scale(2.2);opacity:0}60%{opacity:1}100%{transform:rotate(9deg) scale(1)}}
+
+.minibtns{display:flex;flex-wrap:wrap;gap:9px;justify-content:center}
+.minibtn{font-family:var(--pop);font-size:13.5px;background:var(--purple);color:#fff;border:var(--bd);border-radius:14px;padding:10px 15px;box-shadow:4px 4px 0 var(--ink);transition:transform .08s}
+.minibtn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.minibtn#quizBtn{background:var(--orange);color:var(--ink)}
+.minibtn#powerBtn{background:var(--teal)}
+.minibtn#battleBtn{background:var(--blue)}
+.minibtn[disabled]{opacity:.6;pointer-events:none}
+.mutebtn{flex:none;font-size:15px;background:#fff;border:2.5px solid var(--ink);border-radius:12px;padding:6px 9px;box-shadow:2px 2px 0 var(--ink)}
+
+/* ずかん検定 */
+.qz-tag{font-size:11px;font-weight:800;background:var(--ink);color:var(--yellow);border-radius:7px;padding:1px 9px}
+.qz-fb{font-family:var(--pop);font-size:15px;text-align:center;margin-top:10px}
+.qz-fb.ok{color:var(--teal)}
+.qz-fb.ng{color:var(--pink)}
+.qz-note{font-size:12px;font-weight:800;text-align:center;color:#6E6248;margin-top:4px}
+.dq-opt.correct{background:#D8F7F2;border-color:var(--teal)}
+.dq-opt.wrongpick{background:#FFE3E7;border-color:var(--pink)}
+.qz-score{font-family:var(--pop);font-size:38px;text-align:center;margin:8px 0 2px}
+.qz-title{font-family:var(--pop);font-size:19px;text-align:center;color:var(--pink)}
+
+/* 戦闘力サーチ */
+.pw-form{display:grid;gap:10px;margin-top:12px}
+.pw-row{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;font-weight:800;font-size:13.5px}
+.pw-num{font-family:var(--pop);font-size:22px;min-width:56px;text-align:center;border:2.5px solid var(--ink);border-radius:12px;background:#fff;padding:4px 0}
+input[type=range].pw-slide{width:100%;accent-color:var(--pink);height:28px}
+.pw-area{display:flex;flex-wrap:wrap;gap:7px}
+.pw-a{font-size:12.5px;font-weight:800;background:#fff;border:2.5px solid var(--ink);border-radius:999px;padding:5px 12px;box-shadow:2px 2px 0 var(--ink)}
+.pw-a.on{background:var(--ink);color:var(--yellow)}
+.pw-go{font-family:var(--pop);font-size:15px;background:var(--pink);color:#fff;border:var(--bd);border-radius:14px;padding:11px;box-shadow:4px 4px 0 var(--ink)}
+.pw-go:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.pw-sec{font-family:var(--pop);font-size:14px;margin-top:14px}
+.pw-item{display:flex;align-items:center;gap:9px;width:100%;text-align:left;background:#fff;border:2.5px solid var(--ink);border-radius:12px;padding:8px 11px;margin-top:7px;box-shadow:3px 3px 0 var(--ink)}
+.pw-item:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.pw-lv{flex:none;font-size:10.5px;font-weight:800;background:var(--ink);color:var(--yellow);border-radius:6px;padding:1px 7px}
+.pw-nm{font-weight:800;font-size:13.5px;line-height:1.3}
+.pw-nm small{display:block;font-size:10px;color:#8B7E5E}
+.pw-diff{margin-left:auto;flex:none;font-family:var(--pop);font-size:13px}
+
+/* バトル */
+.bt-pick{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;margin-top:12px}
+.bt-vs{font-family:var(--pop);font-size:17px;color:var(--pink)}
+.bt-in{width:100%;font:inherit;font-weight:700;font-size:14px;border:2.5px solid var(--ink);border-radius:12px;padding:9px 10px;background:#fff}
+.bt-sug{display:grid;gap:6px;margin-top:8px;max-height:150px;overflow-y:auto}
+.bt-sug button{text-align:left;font-size:13px;font-weight:800;background:#FFF3C4;border:2px solid var(--ink);border-radius:10px;padding:7px 10px}
+.bt-arena{margin-top:10px}
+.bt-heads{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;text-align:center}
+.bt-heads img{width:100%;aspect-ratio:16/10;object-fit:cover;border:2.5px solid var(--ink);border-radius:12px;background:#EFE8D2}
+.bt-heads .nm{font-family:var(--pop);font-size:14px;margin-top:5px;line-height:1.3}
+.bt-stat{margin-top:12px}
+.bt-lbl{text-align:center;font-size:11.5px;font-weight:800;color:#6E6248}
+.bt-bars{display:grid;grid-template-columns:1fr 78px 1fr;gap:6px;align-items:center;margin-top:3px}
+.bt-bars .val{font-family:var(--pop);font-size:15px;text-align:center;border:2.5px solid var(--ink);border-radius:10px;padding:3px 0;background:#fff}
+.bt-bars .val.win{background:var(--yellow)}
+.bt-bar{height:12px;border:2.5px solid var(--ink);border-radius:99px;background:#F1ECDC;overflow:hidden;position:relative}
+.bt-bar>i{position:absolute;top:0;bottom:0;background:repeating-linear-gradient(-45deg,var(--pink) 0 8px,#FF8FA0 8px 16px)}
+.bt-bar.L>i{right:0}.bt-bar.R>i{left:0;background:repeating-linear-gradient(-45deg,var(--blue) 0 8px,#7FB0FF 8px 16px)}
+
+/* 画像保存ボタン */
+.dr-btn.card{background:var(--purple);color:#fff}
+
 .gacha[disabled]{opacity:.6;pointer-events:none}
 .joke-note{font-size:11px;font-weight:700;color:#8B7E5E;max-width:340px;line-height:1.7}
 .gc-joke{font-size:10.5px;font-weight:800;color:#8B7E5E;margin-top:12px;border-top:2px dashed #E4DCC2;padding-top:8px}
@@ -286,6 +348,8 @@ footer .fbox{display:inline-block;background:#fff;border:var(--bd);border-radius
   <div class="searchbar">
     <div class="sb-inner">
       <button class="homebtn" id="homeBtn">🏠</button>
+      <span class="zcount" id="zukanCount"></span>
+      <button class="mutebtn" id="muteBtn" aria-label="効果音">🔊</button>
       <div class="searchbox">
         <span class="icon">🔍</span>
         <input id="q" type="search" autocomplete="off" enterkeyhint="search" placeholder="学校名をいれてね（ひらがなOK）">
@@ -301,7 +365,13 @@ footer .fbox{display:inline-block;background:#fff;border:var(--bd);border-radius
     </div>
     <div class="stats-strip" id="strip"></div>
     <div class="countdown" id="countdown"></div>
-    <button class="gacha" id="gachaBtn">🎲 運命の学校ガチャをまわす</button>
+    <button class="shindan" id="shindanBtn">🔮 3分でわかる！運命の高校診断</button>
+    <div class="minibtns">
+      <button class="minibtn" id="gachaBtn">🎲 学校ガチャ</button>
+      <button class="minibtn" id="quizBtn">🧠 ずかん検定</button>
+      <button class="minibtn" id="powerBtn">💪 戦闘力サーチ</button>
+      <button class="minibtn" id="battleBtn">⚔️ 高校くらべ</button>
+    </div>
     <p class="joke-note">※ガチャはおみくじ的なジョーク機能です。進路はデータを見て、自分と先生と相談して決めよう！</p>
   </main>
 
@@ -316,6 +386,12 @@ footer .fbox{display:inline-block;background:#fff;border:var(--bd);border-radius
     <span class="gc-lv" id="gcLv">Lv.??</span>
     <div class="gc-joke">※これはジョーク機能。志望校は自分で決めてね</div>
   </div>
+</div>
+<div class="dovl" id="dovl" aria-hidden="true">
+  <div class="dcard-q" id="dovlCard"></div>
+</div>
+<div class="dovl" id="xovl" aria-hidden="true">
+  <div class="dcard-q" id="xovlCard"></div>
 </div>
 <footer>
   <div class="fbox">
@@ -977,6 +1053,250 @@ const ZUKAN_NOTES = {
 "宮古総合実業":{t:"農業・食・福祉・海洋・商業まで6学科を束ねる、歩く産業図鑑のような総合実業種。商業科（内申84）が学力面の看板だ。塾目線では、島の産業をほぼ全ジャンル学べる構成は、進路が未定の子にとって「入ってから選べる」貴重な設計。海洋科学科は宮古の海を教材にできる、地理的特権を持った学科と言える。",f:["島の産業ぜんぶに興味があるキミ","入ってから専攻を選べる自由に魅力を感じるキミ"],n:["ひとつの専門を入学前に決めきっているキミ。それなら単科の専門校が近道だ","「総合」の意味を調べずに出願するキミ"]}
 };
 
+/* ================= 🔮 運命の高校診断 ================= */
+const SHINDAN_Q = [
+  { q:"通いたいエリアは？", icon:"🗺️", opts:[
+    ["南部でさがす","南部"],["中部でさがす","中部"],["北部でさがす","北部"],["宮古・八重山","宮古・八重山"],["県内ぜんぶ見せて",null]] },
+  { q:"いまの内申点、正直どのへん？（165点満点）", icon:"📓", opts:[
+    ["〜85（これから巻き返す）",80],["86〜110（まんなか辺）",100],["111〜135（けっこう強い）",123],["136〜（ほぼ最強）",145],["わからない・ヒミツ",null]] },
+  { q:"学びたいのはどの系統？", icon:"🎒", opts:[
+    ["普通科でガチ進学","進学"],["英語・国際","国際"],["理数・サイエンス","理数"],["商業・ビジネス","商業"],["工業・ものづくり・IT","工業"],["農業・自然・食","農業"],["海・水産","水産"],["芸術・文化","芸術"],["スポーツ","スポーツ"],["看護・福祉","福祉"],["まだ決めてない","未定"]] },
+  { q:"学校の規模、どっち派？", icon:"🏫", opts:[
+    ["大人数でワイワイ","big"],["少人数でじっくり","small"],["どっちでもいい",null]] },
+  { q:"入試の戦い方は？", icon:"⚔️", opts:[
+    ["激戦区に突っ込む勇者タイプ","hot"],["実力どおり確実に獲るタイプ","fair"],["ねらい目を探す策士タイプ","cool"]] },
+  { q:"卒業後の夢に近いのは？", icon:"🌈", opts:[
+    ["国公立大学に行きたい","国公立"],["県外の大学に飛びたい","県外"],["資格・専門でプロになる","専門"],["早く働いて稼ぐ","就職"],["まだ夢はさがし中","未定"]] }
+];
+
+const KEITO_MAP = {
+  "国際":["国際","英語","国際人文","国際文"],
+  "理数":["理数","文理","学術探究","フロンティア","健康科学"],
+  "商業":["商業","ビジネス","経済","会計","流通","オフィス","観光","事務","情報処理","マルチメディア","情報システム"],
+  "工業":["機械","電気","電子","建築","土木","自動車","IT","情報技術","コンピュータ","デザイン","工学","設備","インテリア","グラフィック","服飾","調理","工業"],
+  "農業":["農","園芸","食品","造園","熱帯","資源","環境","生物","アグリ","フード","ライフ"],
+  "水産":["海洋","水産","マリン","栽培"],
+  "芸術":["芸術","音楽","美術","染織","クリエイティブ","郷土文化","教養"],
+  "スポーツ":["体育","スポーツ"],
+  "福祉":["福祉","健康科学","みらい福祉"]
+};
+
+function shindanScore(ans){
+  /* ans: [area, nai, keito, size, fight, dream] */
+  const results = [];
+  for (const g of SCHOOL_GROUPS) {
+    let best = 0, bestDept = null, bestMatched = false;
+    const cr = (typeof CAREER_OUTCOMES !== "undefined" && CAREER_OUTCOMES[g.name]) || {};
+    const crText = JSON.stringify(cr.stats || []) + (cr.study || []).join("");
+    for (const s of g.depts) {
+      if (s.track !== "全日制") continue;
+      const d = s.y["2025"] || {};
+      let sc = 0, keitoMatched = false;
+      /* エリア（県全域受験可の学科はエリア外でも候補に残す） */
+      if (ans[0] == null) sc += 14;
+      else if (g.area === ans[0]) sc += 30;
+      else if (typeof gkOf === "function" && gkOf(s) === "県全域") sc += 10;
+      else continue;
+      /* 内申の距離 */
+      if (ans[1] != null && d.nai != null) {
+        const diff = Math.abs(d.nai - ans[1]);
+        sc += Math.max(0, 26 - diff * 0.55);
+        if (d.nai > ans[1] + 22) sc -= 12; /* 高すぎる背伸びは減点 */
+      } else sc += 10;
+      /* 系統 */
+      const k = ans[2];
+      if (k === "進学") { if (d.dev != null && d.dev >= 50 && /普通|探究|文理|フロンティア/.test(s.dept)) sc += 34; else if (/普通/.test(s.dept)) sc += 12; }
+      else if (k === "未定") { if (/総合学科|普通/.test(s.dept)) sc += 18; }
+      else if (k && KEITO_MAP[k]) {
+        if (KEITO_MAP[k].some(w => s.dept.includes(w))) { sc += 36; keitoMatched = true; }
+        else sc -= 18; /* 系統を選んだのに合わない学科は大きく減点 */
+      }
+      /* 規模 */
+      const cap = (TOKU[s.id] || [])[0];
+      if (ans[3] === "big" && cap >= 240) sc += 8;
+      if (ans[3] === "small" && cap != null && cap <= 80) sc += 8;
+      /* 戦い方 */
+      const r = Math.max(d.rT ?? 0, d.rI ?? 0);
+      if (ans[4] === "hot" && r >= 2) sc += 8;
+      if (ans[4] === "fair" && r >= 0.8 && r <= 1.3) sc += 8;
+      if (ans[4] === "cool" && r > 0 && r < 0.8) sc += 10;
+      /* 夢 */
+      const dr = ans[5];
+      if (dr === "国公立" && /国公立/.test(crText)) sc += 8;
+      if (dr === "県外" && /(早稲田|明治|県外|東京|大阪|福岡)/.test(crText)) sc += 8;
+      if (dr === "専門" && /(専門|専修|資格)/.test(crText)) sc += 8;
+      if (dr === "就職" && /就職/.test(crText)) sc += 8;
+      if (sc > best) { best = sc; bestDept = s.dept; bestMatched = keitoMatched; }
+    }
+    if (best > 0) results.push({ g, score: best, dept: bestDept, matched: bestMatched });
+  }
+  /* 系統を選んでいて、マッチする学校があるなら、マッチ校だけに絞る */
+  if (ans[2] && KEITO_MAP[ans[2]] && results.some(r => r.matched)) {
+    const only = results.filter(r => r.matched);
+    results.length = 0; results.push(...only);
+  }
+  results.sort((a, b) => b.score - a.score);
+  const top = results.slice(0, 3);
+  const max = top.length ? top[0].score : 1;
+  return top.map((x, i) => ({ ...x, pct: Math.min(98, Math.round(x.score / max * (98 - i * 7))) }));
+}
+
+/* ================= 📕 図鑑コンプリート（見た学校を記録） ================= */
+const zstore = (() => {
+  let mem = null;
+  return {
+    load(){ try { return new Set(JSON.parse(localStorage.getItem("zukan-got") || "[]")); } catch(e){ return mem || (mem = new Set()); } },
+    save(set){ try { localStorage.setItem("zukan-got", JSON.stringify([...set])); } catch(e){ mem = set; } }
+  };
+})();
+let GOT = zstore.load();
+
+function markGot(name){
+  const isNew = !GOT.has(name);
+  GOT.add(name);
+  zstore.save(GOT);
+  updateZukanCount();
+  return isNew;
+}
+function updateZukanCount(){
+  const el = document.querySelector("#zukanCount");
+  if (el) el.innerHTML = `📕 図鑑 <b>${GOT.size}</b>/${SCHOOL_GROUPS.length}` + (GOT.size >= SCHOOL_GROUPS.length ? " 🏆コンプ!!" : "");
+}
+
+/* ================= 🔊 効果音（WebAudio合成・ファイル不要） ================= */
+const SFX = (() => {
+  let ctx = null, muted = false;
+  try { muted = localStorage.getItem("zukan-mute") === "1"; } catch(e){}
+  function ac(){ try { return ctx || (ctx = new (window.AudioContext || window.webkitAudioContext)()); } catch(e){ return null; } }
+  function tone(freq, dur, type, vol, when){
+    const a = ac(); if (!a || muted) return;
+    try {
+      const o = a.createOscillator(), g = a.createGain();
+      o.type = type || "square"; o.frequency.value = freq;
+      g.gain.setValueAtTime(vol || .08, a.currentTime + (when || 0));
+      g.gain.exponentialRampToValueAtTime(.001, a.currentTime + (when || 0) + dur);
+      o.connect(g); g.connect(a.destination);
+      o.start(a.currentTime + (when || 0)); o.stop(a.currentTime + (when || 0) + dur + .02);
+    } catch(e){}
+  }
+  return {
+    tap(){ tone(880, .07, "square", .05); },
+    tick(){ tone(1200, .04, "square", .04); },
+    stamp(){ tone(140, .18, "triangle", .14); tone(90, .22, "sine", .1, .02); },
+    win(){ [523, 659, 784, 1047].forEach((f, i) => tone(f, .16, "square", .07, i * .09)); },
+    love(){ [784, 988, 1175].forEach((f, i) => tone(f, .2, "triangle", .07, i * .11)); },
+    toggle(){ muted = !muted; try { localStorage.setItem("zukan-mute", muted ? "1" : "0"); } catch(e){} return muted; },
+    isMuted(){ return muted; }
+  };
+})();
+
+/* ================= 🏅 診断の称号 ================= */
+const TITLE_RULES = [
+  [/海洋|水産/, "未来の海人（うみんちゅ）"],
+  [/理数|学術探究|文理|フロンティア/, "島のサイエンティスト"],
+  [/国際|英語/, "世界を狙うチャレンジャー"],
+  [/芸術|音楽|美術|染織|クリエイティブ/, "運命のアーティスト"],
+  [/郷土文化/, "文化の継承者"],
+  [/体育|スポーツ/, "炎のアスリート"],
+  [/看護|福祉/, "みんなのヒーロー"],
+  [/農|園芸|食品|熱帯|アグリ|フード/, "大地の錬金術師"],
+  [/機械|電気|電子|自動車|IT|情報技術|コンピュータ|工/, "ものづくりの申し子"],
+  [/商|ビジネス|観光|経済|流通|オフィス/, "島の商人（あきんど）"],
+  [/総合学科/, "自由な時間割の設計士"],
+  [/普通/, "王道を行く勇者"]
+];
+function fateTitle(dept){
+  for (const [re, t] of TITLE_RULES) if (re.test(dept || "")) return t;
+  return "運命の探求者";
+}
+
+/* ================= ⚔️ 高校くらべバトルの比較値 ================= */
+function battleStats(g){
+  let dev = null, nai = null, r = null, cap = 0;
+  for (const s of g.depts) {
+    const d = s.y["2025"] || {};
+    if (d.dev != null && (dev == null || d.dev > dev)) dev = d.dev;
+    if (d.nai != null && (nai == null || d.nai > nai)) nai = d.nai;
+    for (const x of [d.rT, d.rI]) if (x != null && (r == null || x > r)) r = x;
+    cap += (TOKU[s.id] || [])[0] || 0;
+  }
+  return { dev, nai, r, cap, depts: g.depts.length };
+}
+
+/* ================= 🧠 ずかん検定（歴史は調査ずみ事実、データ問題は毎回自動生成） ================= */
+const HIST_QA = [
+  { q:"夏の甲子園で2年連続準優勝（1990・91年）を果たした学校は？", a:"沖縄水産", w:["首里","コザ"] },
+  { q:"1958年、県勢として初めて甲子園に出場した学校は？", a:"首里", w:["那覇","コザ"] },
+  { q:"2006年、離島勢として史上初めて甲子園の土を踏んだ学校は？", a:"八重山商工", w:["宮古","八重山"] },
+  { q:"1965年、県勢初の「甲子園の土の持ち帰り」に成功した学校は？", a:"コザ", w:["首里","那覇"] },
+  { q:"ルーツが琉球王国の最高学府「国学」までさかのぼる学校は？", a:"首里", w:["開邦","那覇"] },
+  { q:"旧制沖縄県立第二中学校（二中）の系譜を継ぐ学校は？", a:"那覇", w:["首里","名護"] },
+  { q:"全国でも珍しい「染織デザイン科」を持つ学校は？", a:"首里", w:["那覇工業","浦添工業"] },
+  { q:"就職内定率100%の実績を持つ6学科の工業の名門は？", a:"沖縄工業", w:["美来工科","那覇工業"] }
+];
+function shuffle(a){ for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+function pickN(arr, n){ return shuffle([...arr]).slice(0, n); }
+
+function genQuiz(){
+  const qs = [];
+  /* 歴史から2問 */
+  for (const h of pickN(HIST_QA, 2)) qs.push({ q: h.q, opts: shuffle([h.a, ...h.w]), a: h.a, tag: "歴史" });
+  /* 倍率問題（特色） */
+  {
+    const pool = SCHOOL_GROUPS.filter(g => g.depts.some(s => s.track === "全日制" && (s.y["2025"] || {}).rT != null));
+    const three = pickN(pool, 3);
+    const val = g => Math.max(...g.depts.filter(s => s.track === "全日制").map(s => (s.y["2025"] || {}).rT ?? -1));
+    three.sort((a, b) => val(b) - val(a));
+    if (val(three[0]) > val(three[1])) qs.push({ q: "2025年の特色選抜、倍率がいちばん高かったのは？", opts: shuffle(three.map(g => g.name)), a: three[0].name, tag: "倍率", note: `答え：${three[0].name}（${val(three[0]).toFixed(2)}倍）` });
+  }
+  /* レベル問題 */
+  {
+    const pool = SCHOOL_GROUPS.filter(g => schoolLv(g) != null);
+    let three = pickN(pool, 3);
+    three.sort((a, b) => schoolLv(b) - schoolLv(a));
+    if (schoolLv(three[0]) > schoolLv(three[1])) qs.push({ q: "目安の偏差値（レベル）がいちばん高いのは？", opts: shuffle(three.map(g => g.name)), a: three[0].name, tag: "レベル", note: `答え：${three[0].name}（Lv.${schoolLv(three[0])}）` });
+  }
+  /* 定員問題 */
+  {
+    const cap = g => g.depts.reduce((t, s) => t + ((TOKU[s.id] || [])[0] || 0), 0);
+    let three = pickN(SCHOOL_GROUPS, 3);
+    three.sort((a, b) => cap(b) - cap(a));
+    if (cap(three[0]) > cap(three[1])) qs.push({ q: "募集定員の合計がいちばん多いのは？", opts: shuffle(three.map(g => g.name)), a: three[0].name, tag: "定員", note: `答え：${three[0].name}（${cap(three[0])}人）` });
+  }
+  return qs.slice(0, 5);
+}
+function quizTitle(score, total){
+  if (score >= total) return "🏆 ずかん博士";
+  if (score >= total - 1) return "🎓 島の情報通";
+  if (score >= 3) return "📖 見習い研究員";
+  return "🦖 のびしろ怪獣";
+}
+
+/* ================= 💪 戦闘力サーチ（内申から逆引き） ================= */
+function powerSearch(nai, area){
+  const just = [], challenge = [], safe = [];
+  for (const g of SCHOOL_GROUPS) {
+    if (area && g.area !== area) continue;
+    let bestDept = null, bestDiff = null;
+    for (const s of g.depts) {
+      if (s.track !== "全日制") continue;
+      const dn = (s.y["2025"] || {}).nai;
+      if (dn == null) continue;
+      const diff = dn - nai;
+      if (bestDiff == null || Math.abs(diff) < Math.abs(bestDiff)) { bestDiff = diff; bestDept = s; }
+    }
+    if (bestDept == null) continue;
+    const item = { g, dept: bestDept.dept, nai: (bestDept.y["2025"] || {}).nai, diff: bestDiff };
+    if (Math.abs(bestDiff) <= 8) just.push(item);
+    else if (bestDiff > 8 && bestDiff <= 24) challenge.push(item);
+    else if (bestDiff < -8 && bestDiff >= -32) safe.push(item);
+  }
+  just.sort((a, b) => Math.abs(a.diff) - Math.abs(b.diff));
+  challenge.sort((a, b) => a.diff - b.diff);
+  safe.sort((a, b) => b.diff - a.diff);
+  return { just: just.slice(0, 6), challenge: challenge.slice(0, 5), safe: safe.slice(0, 5) };
+}
+
 /* ================= 読みがな ================= */
 const READINGS = {
 "開邦":"かいほう","那覇国際":"なはこくさい","那覇":"なは","首里":"しゅり","首里東":"しゅりひがし",
@@ -1104,6 +1424,7 @@ function rollGacha(){
   let delay = 55;
   const spin = () => {
     const g = SCHOOL_GROUPS[Math.floor(Math.random() * SCHOOL_GROUPS.length)];
+    SFX.tick();
     nameEl.textContent = g.name;
     yomiEl.textContent = READINGS[g.name] || "";
     delay *= 1.13;
@@ -1119,6 +1440,7 @@ function rollGacha(){
       lvEl.textContent = lvTag(schoolLv(winner));
       lvEl.style.opacity = "";
       labelEl.textContent = "🎉 キミの運命の学校！";
+      SFX.win();
       ovl.classList.remove("rolling");
       ovl.classList.add("done");
       confetti(ovl.querySelector(".gcard"));
@@ -1192,13 +1514,20 @@ qEl.addEventListener("keydown", e => {
 });
 sugEl.addEventListener("click", e => {
   const b = e.target.closest(".sug-item");
-  if (b) selectSchool(b.dataset.name);
+  if (b) { SFX.tap(); selectSchool(b.dataset.name); }
 });
 clearBtn.addEventListener("click", () => { qEl.value = ""; renderSug(); qEl.focus(); });
 document.addEventListener("click", e => {
   if (!e.target.closest(".searchbox")) sugEl.classList.remove("show");
 });
 $("#homeBtn").addEventListener("click", goHome);
+(function(){
+  const mb = $("#muteBtn");
+  if (!mb) return;
+  const paint = () => mb.textContent = SFX.isMuted() ? "🔇" : "🔊";
+  paint();
+  mb.addEventListener("click", () => { SFX.toggle(); paint(); });
+})();
 
 function goHome(){
   document.body.classList.remove("detail");
@@ -1425,8 +1754,11 @@ function selectSchool(name){
       <div class="photo-credit">画像出典：<a href="${esc(ph.p)}" target="_blank" rel="noopener">${esc(ph.t)}</a></div>
     </div></div>` : "";
 
+  const gotNew = typeof markGot === "function" ? markGot(g.name) : false;
+  if (gotNew) SFX.stamp();
   $("#detail").innerHTML = `
     <div class="d-head">
+      <span class="getstamp ${gotNew ? "pop" : ""}">ゲット${gotNew ? "!!" : "ずみ"}</span>
       <div class="d-crumb">高校ずかん No.${String(idx + 1).padStart(2, "0")}｜${esc(g.area)}エリア</div>
       <h2 class="d-name">${esc(g.name)}高等学校<small>${esc(READINGS[g.name] || "")}</small></h2>
       <div class="d-badges">
@@ -1470,6 +1802,356 @@ $("#detail").addEventListener("click", e => {
   if (b) document.getElementById(b.dataset.goto)?.scrollIntoView({ behavior: "smooth" });
 });
 
+/* ================= 🔮 運命の高校診断フロー ================= */
+(function(){
+  const btn = $("#shindanBtn"), ovl = $("#dovl"), card = $("#dovlCard");
+  if (!btn) return;
+  let step = 0, answers = [];
+
+  function open(){ step = 0; answers = []; ovl.classList.add("show"); renderQ(); }
+  function close(){ ovl.classList.remove("show"); }
+
+  function renderQ(){
+    const Q = SHINDAN_Q[step];
+    card.innerHTML = `
+      <button class="dq-close" data-act="close">×</button>
+      <div class="dq-prog">${SHINDAN_Q.map((_, i) => `<span class="${i <= step ? "on" : ""}"></span>`).join("")}</div>
+      <div class="dq-icon">${Q.icon}</div>
+      <div class="dq-q">Q${step + 1}. ${esc(Q.q)}</div>
+      <div class="dq-opts">${Q.opts.map((o, i) => `<button class="dq-opt" data-i="${i}">${esc(o[0])}</button>`).join("")}</div>
+      ${step > 0 ? `<button class="dq-back" data-act="back">← ひとつ戻る</button>` : ""}`;
+  }
+
+  function renderResult(){
+    card.innerHTML = `<div class="dq-icon">🔮</div><div class="dr-title">運命を計算中……</div>`;
+    const top = shindanScore(answers);
+    setTimeout(() => {
+      if (!top.length) {
+        card.innerHTML = `<button class="dq-close" data-act="close">×</button>
+          <div class="dq-icon">😵</div><div class="dr-title">条件が厳しすぎたみたい…！</div>
+          <div class="dr-actions"><button class="dr-btn" data-act="retry">もう一回</button><button class="dr-btn" data-act="close">とじる</button></div>`;
+        return;
+      }
+      const medal = ["🥇 運命", "🥈 好相性", "🥉 アリかも"];
+      card.innerHTML = `
+        <button class="dq-close" data-act="close">×</button>
+        <div class="dq-icon">💘</div>
+        <div class="dr-title">キミの運命の高校は……</div>
+        <div style="text-align:center;margin-top:6px"><span class="dbadge lvb" style="font-size:13px">🏅 称号：${esc(fateTitle(top[0].dept))}</span></div>
+        ${top.map((x, i) => {
+          const ph = typeof PHOTOS !== "undefined" ? PHOTOS[x.g.name] : null;
+          return `<button class="dr-item ${i === 0 ? "first" : ""}" data-go="${esc(x.g.name)}">
+            <span class="dr-rank">${medal[i]}</span>
+            ${ph ? `<img src="${esc(ph.f)}" alt="">` : `<span style="width:86px"></span>`}
+            <span><span class="dr-name">${esc(x.g.name)}高校</span><br>
+            <span class="dr-sub">${esc(x.g.area)}・おすすめ学科：${esc(x.dept || "—")}</span></span>
+            <span class="dr-pct"><b>${x.pct}%</b><small>運命度</small></span>
+          </button>`;
+        }).join("")}
+        <div class="dr-actions">
+          <button class="dr-btn share" data-act="share">📣 結果をコピーして自慢</button>
+          <button class="dr-btn card" data-act="cardimg">🖼 結果カードを画像で保存</button>
+          <button class="dr-btn" data-act="retry">🔁 もう一回診断</button>
+          <button class="dr-btn" data-act="close">とじる</button>
+        </div>
+        <p class="dr-note">※診断は収録データ（内申目安・学科・倍率・進路実績）で機械的に相性を計算したジョークまじりの参考情報。<br>本当の運命は、キミが決める。</p>`;
+      card._top = top;
+      SFX.love();
+    }, 900);
+  }
+
+  card.addEventListener("click", e => {
+    const act = e.target.closest("[data-act]");
+    if (act) {
+      const a = act.dataset.act;
+      if (a === "close") close();
+      if (a === "back") { step--; answers.pop(); renderQ(); }
+      if (a === "retry") { step = 0; answers = []; renderQ(); }
+      if (a === "cardimg") {
+        try { makeFateCard(card._top || []); act.textContent = "✅ 保存した！"; }
+        catch(err){ act.textContent = "😵 この環境では保存できない…"; }
+        setTimeout(() => act.textContent = "🖼 結果カードを画像で保存", 1800);
+        return;
+      }
+      if (a === "share") {
+        const top = card._top || [];
+        const txt = `🔮運命の高校診断の結果…\n🏅称号「${fateTitle(top[0] && top[0].dept)}」\n` + top.map((x, i) => `${["🥇","🥈","🥉"][i]} ${x.g.name}高校（運命度${x.pct}%）`).join("\n") + `\n#高校ずかん #沖縄県立高校入試`;
+        const done = ok => { act.textContent = ok ? "✅ コピーした！" : "😵 コピー失敗…"; setTimeout(() => act.textContent = "📣 結果をコピーして自慢", 1600); };
+        if (navigator.clipboard) navigator.clipboard.writeText(txt).then(() => done(true), () => done(false)); else done(false);
+        return;
+      }
+      return;
+    }
+    const go = e.target.closest("[data-go]");
+    if (go) { close(); selectSchool(go.dataset.go); return; }
+    const opt = e.target.closest(".dq-opt");
+    if (opt) {
+      answers.push(SHINDAN_Q[step].opts[+opt.dataset.i][1]);
+      step++;
+      if (step < SHINDAN_Q.length) renderQ(); else renderResult();
+    }
+  });
+  ovl.addEventListener("click", e => { if (e.target === ovl) close(); });
+  btn.addEventListener("click", open);
+  updateZukanCount();
+})();
+
+/* ================= 🖼 診断結果カード画像（写真は使わずライセンス安全） ================= */
+function makeFateCard(top){
+  const W = 720, H = 900;
+  const cv = document.createElement("canvas"); cv.width = W; cv.height = H;
+  const c = cv.getContext("2d");
+  const POP = '"Mochiy Pop One","Hiragino Maru Gothic ProN",sans-serif';
+  c.fillStyle = "#FFF7E0"; c.fillRect(0, 0, W, H);
+  c.fillStyle = "#F3E3B4";
+  for (let y = 20; y < H; y += 44) for (let x = 20; x < W; x += 44) { c.beginPath(); c.arc(x, y, 3, 0, 7); c.fill(); }
+  /* 枠 */
+  c.strokeStyle = "#1D1D1D"; c.lineWidth = 10;
+  c.beginPath(); c.roundRect(24, 24, W - 48, H - 48, 34); c.stroke();
+  /* ヘッダー帯 */
+  c.save(); c.beginPath(); c.roundRect(24, 24, W - 48, 74, [34, 34, 0, 0]); c.clip();
+  for (let x = -40; x < W; x += 48) { c.fillStyle = (x / 48) % 2 ? "#1D1D1D" : "#FFC800"; c.save(); c.translate(x, 24); c.rotate(-.6); c.fillRect(0, -20, 26, 140); c.restore(); }
+  c.restore();
+  c.textAlign = "center"; c.fillStyle = "#1D1D1D";
+  c.font = `700 40px ${POP}`; c.fillText("🔮 運命の高校診断", W / 2, 168);
+  c.font = `700 22px ${POP}`; c.fillStyle = "#8B7E5E"; c.fillText("高校ずかん｜沖縄県立高校入試", W / 2, 206);
+  /* 称号 */
+  const title = "称号「" + fateTitle(top[0] && top[0].dept) + "」";
+  c.font = `700 30px ${POP}`;
+  const tw = c.measureText(title).width + 56;
+  c.fillStyle = "#1D1D1D"; c.beginPath(); c.roundRect(W / 2 - tw / 2, 232, tw, 58, 16); c.fill();
+  c.fillStyle = "#FFC800"; c.fillText(title, W / 2, 272);
+  /* TOP3 */
+  const medals = ["🥇", "🥈", "🥉"];
+  top.slice(0, 3).forEach((x, i) => {
+    const y = 330 + i * 150, first = i === 0;
+    c.fillStyle = "#fff"; c.strokeStyle = first ? "#FF5D73" : "#1D1D1D"; c.lineWidth = first ? 8 : 6;
+    c.beginPath(); c.roundRect(70, y, W - 140, 124, 22); c.fill(); c.stroke();
+    c.textAlign = "left"; c.fillStyle = "#1D1D1D";
+    c.font = `700 ${first ? 44 : 36}px ${POP}`;
+    c.fillText(medals[i] + " " + x.g.name + "高校", 100, y + (first ? 58 : 52));
+    c.font = `700 20px ${POP}`; c.fillStyle = "#8B7E5E";
+    c.fillText(x.g.area + "・" + (x.dept || ""), 104, y + 96);
+    c.textAlign = "right"; c.fillStyle = "#FF5D73"; c.font = `700 ${first ? 50 : 40}px ${POP}`;
+    c.fillText(x.pct + "%", W - 100, y + (first ? 66 : 58));
+    c.font = `700 16px ${POP}`; c.fillStyle = "#8B7E5E"; c.fillText("運命度", W - 100, y + 94);
+    c.textAlign = "left";
+  });
+  c.textAlign = "center"; c.fillStyle = "#8B7E5E"; c.font = `700 18px ${POP}`;
+  c.fillText("※データで相性を計算したジョークまじりの参考情報", W / 2, 816);
+  c.fillText("本当の運命は、キミが決める。", W / 2, 844);
+  const a = document.createElement("a");
+  a.download = "unmei-shindan.png"; a.href = cv.toDataURL("image/png"); a.click();
+}
+
+/* ================= 🧠 ずかん検定・💪 戦闘力サーチ・⚔️ バトル（共用オーバーレイ） ================= */
+(function(){
+  const ovl = $("#xovl"), card = $("#xovlCard");
+  if (!ovl) return;
+  const close = () => ovl.classList.remove("show");
+  ovl.addEventListener("click", e => { if (e.target === ovl) close(); });
+
+  /* ---------- 🧠 ずかん検定 ---------- */
+  let quiz = [], qi = 0, qScore = 0, qLock = false;
+  function quizStart(){ quiz = genQuiz(); qi = 0; qScore = 0; renderQuizQ(); }
+  function renderQuizQ(){
+    qLock = false;
+    const Q = quiz[qi];
+    card.innerHTML = `
+      <button class="dq-close" data-act="close">×</button>
+      <div class="dq-prog">${quiz.map((_, i) => `<span class="${i <= qi ? "on" : ""}"></span>`).join("")}</div>
+      <div style="text-align:center"><span class="qz-tag">${esc(Q.tag)}のもんだい</span></div>
+      <div class="dq-q">Q${qi + 1}. ${esc(Q.q)}</div>
+      <div class="dq-opts">${Q.opts.map((o, i) => `<button class="dq-opt" data-qa="${esc(o)}">${esc(o)}高校</button>`).join("")}</div>
+      <div class="qz-fb" id="qzFb"></div><div class="qz-note" id="qzNote"></div>`;
+  }
+  function renderQuizResult(){
+    const total = quiz.length;
+    card.innerHTML = `
+      <button class="dq-close" data-act="close">×</button>
+      <div class="dq-icon">🧠</div>
+      <div class="dr-title">ずかん検定 けっか発表！</div>
+      <div class="qz-score">${qScore}<small style="font-size:18px">／${total}問</small></div>
+      <div class="qz-title">${quizTitle(qScore, total)}</div>
+      <div class="dr-actions">
+        <button class="dr-btn share" data-act="qzshare">📣 結果をコピーして自慢</button>
+        <button class="dr-btn" data-act="qzretry">🔁 もう一回（問題は毎回かわる）</button>
+      </div>
+      <p class="dr-note">歴史問題は調査ずみの事実、データ問題は2025年度の収録データから毎回自動で出題しています。</p>`;
+    if (qScore >= total - 1) SFX.win();
+  }
+
+  /* ---------- 💪 戦闘力サーチ ---------- */
+  let pwNai = 100, pwArea = null;
+  function powerStart(){ renderPowerForm(); }
+  function renderPowerForm(){
+    card.innerHTML = `
+      <button class="dq-close" data-act="close">×</button>
+      <div class="dq-icon">💪</div>
+      <div class="dr-title">戦闘力サーチ</div>
+      <p class="dr-note" style="margin-top:4px">キミの内申点（戦闘力）を入れると、いま戦えるフィールドが見える。</p>
+      <div class="pw-form">
+        <div class="pw-row"><span>📓 内申</span><input type="range" class="pw-slide" id="pwSlide" min="45" max="165" value="${pwNai}"><span class="pw-num" id="pwNum">${pwNai}</span></div>
+        <div class="pw-area" id="pwArea">
+          ${[null, ...AREAS].map(a => `<button class="pw-a ${a === pwArea ? "on" : ""}" data-area="${a ?? ""}">${a ?? "県内ぜんぶ"}</button>`).join("")}
+        </div>
+        <button class="pw-go" data-act="pwgo">⚡ 戦えるフィールドを見る</button>
+      </div>`;
+    const slide = card.querySelector("#pwSlide");
+    slide.addEventListener("input", () => { pwNai = +slide.value; card.querySelector("#pwNum").textContent = pwNai; });
+  }
+  function renderPowerResult(){
+    const R = powerSearch(pwNai, pwArea);
+    const item = x => `<button class="pw-item" data-go="${esc(x.g.name)}">
+        <span class="pw-lv">${lvTag(schoolLv(x.g))}</span>
+        <span class="pw-nm">${esc(x.g.name)}<small>${esc(x.dept)}・目安内申${x.nai}</small></span>
+        <span class="pw-diff">${x.diff > 0 ? "+" + x.diff : x.diff}</span>
+      </button>`;
+    const sec = (title, arr, empty) => `<div class="pw-sec">${title}</div>` + (arr.length ? arr.map(item).join("") : `<p class="dr-note" style="text-align:left">${empty}</p>`);
+    card.innerHTML = `
+      <button class="dq-close" data-act="close">×</button>
+      <div class="dq-icon">💪</div>
+      <div class="dr-title">戦闘力 ${pwNai}${pwArea ? "・" + esc(pwArea) : ""} のフィールド</div>
+      ${sec("🎯 ちょうどいい戦場（±8）", R.just, "この帯はエリアを広げてみよう")}
+      ${sec("🔥 挑戦する価値あり（+9〜24）", R.challenge, "このエリアの上は…もう頂点かも")}
+      ${sec("🛡 セーフティゾーン（-9〜32）", R.safe, "下に余裕なし。挑戦あるのみ！")}
+      <div class="dr-actions">
+        <button class="dr-btn" data-act="pwback">← 条件をかえる</button>
+        <button class="dr-btn" data-act="close">とじる</button>
+      </div>
+      <p class="dr-note">目安内申（165点満点）との差で機械的に仕分けた参考情報。数字の右は「学校の目安 − キミ」。当日点や倍率で結果は動くので、最後は過去問と相談！</p>`;
+  }
+
+  /* ---------- ⚔️ 高校くらべバトル ---------- */
+  let pick = [null, null];
+  function renderPick(){
+    card.innerHTML = `
+      <button class="dq-close" data-act="close">×</button>
+      <div class="dq-icon">⚔️</div>
+      <div class="dr-title">高校くらべバトル</div>
+      <div class="bt-pick">
+        <input class="bt-in" id="btA" placeholder="1校目をいれてね" value="${pick[0] ? esc(pick[0]) : ""}">
+        <span class="bt-vs">VS</span>
+        <input class="bt-in" id="btB" placeholder="2校目をいれてね" value="${pick[1] ? esc(pick[1]) : ""}">
+      </div>
+      <div class="bt-sug" id="btSug"></div>
+      <p class="dr-note">ひらがなOK。2校そろうとバトル開始！</p>`;
+    const sug = card.querySelector("#btSug");
+    const wire = (inp, idx) => {
+      inp.addEventListener("input", () => {
+        const nq = norm(inp.value);
+        if (!nq) { sug.innerHTML = ""; return; }
+        const hits = SCHOOL_GROUPS.filter(g => matchSchool(g, nq) > 0).slice(0, 5);
+        sug.innerHTML = hits.map(g => `<button data-pick="${idx}" data-nm="${esc(g.name)}">${lvTag(schoolLv(g))} ${esc(g.name)}（${esc(g.area)}）</button>`).join("");
+      });
+    };
+    wire(card.querySelector("#btA"), 0);
+    wire(card.querySelector("#btB"), 1);
+  }
+  function renderBattle(){
+    const [A, B] = pick.map(n => SCHOOL_GROUPS.find(g => g.name === n));
+    const sa = battleStats(A), sb = battleStats(B);
+    const pa = typeof PHOTOS !== "undefined" ? PHOTOS[A.name] : null;
+    const pb = typeof PHOTOS !== "undefined" ? PHOTOS[B.name] : null;
+    const row = (label, va, vb, f, max) => {
+      const wa = va != null && (vb == null || va >= vb), wb = vb != null && (va == null || vb >= va);
+      return `<div class="bt-stat"><div class="bt-lbl">${label}</div>
+        <div class="bt-bars">
+          <span class="val ${wa ? "win" : ""}">${va == null ? "—" : f(va)}</span>
+          <div style="display:grid;gap:3px">
+            <div class="bt-bar L"><i style="width:${va == null ? 0 : Math.min(100, va / max * 100)}%"></i></div>
+            <div class="bt-bar R"><i style="width:${vb == null ? 0 : Math.min(100, vb / max * 100)}%"></i></div>
+          </div>
+          <span class="val ${wb ? "win" : ""}">${vb == null ? "—" : f(vb)}</span>
+        </div></div>`;
+    };
+    card.innerHTML = `
+      <button class="dq-close" data-act="close">×</button>
+      <div class="bt-arena">
+        <div class="bt-heads">
+          <div>${pa ? `<img src="${esc(pa.f)}">` : ""}<div class="nm">${esc(A.name)}</div></div>
+          <span class="bt-vs">VS</span>
+          <div>${pb ? `<img src="${esc(pb.f)}">` : ""}<div class="nm">${esc(B.name)}</div></div>
+        </div>
+        ${row("🎯 最高偏差値（目安）", sa.dev, sb.dev, v => v, 70)}
+        ${row("📓 最高内申（目安）", sa.nai, sb.nai, v => v, 165)}
+        ${row("🔥 最高倍率（人気）", sa.r, sb.r, v => v.toFixed(2), 5)}
+        ${row("🪑 募集定員（合計）", sa.cap, sb.cap, v => v + "人", 480)}
+        ${row("📚 学科・コース数", sa.depts, sb.depts, v => v, 8)}
+        <div class="dr-actions">
+          <button class="dr-btn" data-go="${esc(A.name)}">${esc(A.name)}を見る</button>
+          <button class="dr-btn" data-go="${esc(B.name)}">${esc(B.name)}を見る</button>
+          <button class="dr-btn" data-act="rematch">🔁 別の対戦</button>
+          <button class="dr-btn share" data-act="btshare">📣 対戦カードをコピー</button>
+        </div>
+        <p class="dr-note">数値バトルに勝ち負けはあっても、進路に勝ち負けはない。最後はキミの運命感で選べ！</p>
+      </div>`;
+    card._battle = { A, B, sa, sb };
+    SFX.win();
+  }
+
+  /* ---------- 共用クリックハンドラ ---------- */
+  card.addEventListener("click", e => {
+    if (e.target.closest('[data-act="close"]')) { close(); return; }
+    /* 検定：回答 */
+    const qa = e.target.closest("[data-qa]");
+    if (qa && !qLock) {
+      qLock = true;
+      const Q = quiz[qi], picked = qa.dataset.qa, ok = picked === Q.a;
+      if (ok) { qScore++; SFX.love(); } else SFX.tap();
+      card.querySelectorAll(".dq-opt").forEach(b => {
+        if (b.dataset.qa === Q.a) b.classList.add("correct");
+        else if (b.dataset.qa === picked) b.classList.add("wrongpick");
+      });
+      card.querySelector("#qzFb").textContent = ok ? "⭕ せいかい！" : "❌ ざんねん！";
+      card.querySelector("#qzFb").className = "qz-fb " + (ok ? "ok" : "ng");
+      if (Q.note) card.querySelector("#qzNote").textContent = Q.note;
+      setTimeout(() => { qi++; qi < quiz.length ? renderQuizQ() : renderQuizResult(); }, 1300);
+      return;
+    }
+    const act = e.target.closest("[data-act]");
+    if (act) {
+      const a = act.dataset.act;
+      if (a === "qzretry") { SFX.tap(); quizStart(); }
+      if (a === "qzshare") {
+        const txt = `🧠ずかん検定の結果：${qScore}／${quiz.length}問せいかい！\n称号「${quizTitle(qScore, quiz.length).replace(/^\S+ /, "")}」\n#高校ずかん #沖縄県立高校入試`;
+        const done = ok => { act.textContent = ok ? "✅ コピーした！" : "😵 失敗…"; setTimeout(() => act.textContent = "📣 結果をコピーして自慢", 1600); };
+        if (navigator.clipboard) navigator.clipboard.writeText(txt).then(() => done(true), () => done(false)); else done(false);
+      }
+      if (a === "pwgo") { SFX.tap(); renderPowerResult(); }
+      if (a === "pwback") { SFX.tap(); renderPowerForm(); }
+      if (a === "rematch") { pick = [null, null]; renderPick(); }
+      if (a === "btshare" && card._battle) {
+        const { A, B, sa, sb } = card._battle;
+        const txt = `⚔️高校くらべバトル\n${A.name} vs ${B.name}\n🎯偏差値 ${sa.dev ?? "—"} vs ${sb.dev ?? "—"}\n🔥人気倍率 ${sa.r?.toFixed(2) ?? "—"} vs ${sb.r?.toFixed(2) ?? "—"}\n#高校ずかん`;
+        const done = ok => { act.textContent = ok ? "✅ コピーした！" : "😵 失敗…"; setTimeout(() => act.textContent = "📣 対戦カードをコピー", 1600); };
+        if (navigator.clipboard) navigator.clipboard.writeText(txt).then(() => done(true), () => done(false)); else done(false);
+      }
+      return;
+    }
+    const areaBtn = e.target.closest("[data-area]");
+    if (areaBtn) {
+      SFX.tap();
+      pwArea = areaBtn.dataset.area || null;
+      card.querySelectorAll(".pw-a").forEach(b => b.classList.toggle("on", (b.dataset.area || null) === pwArea));
+      return;
+    }
+    const p = e.target.closest("[data-pick]");
+    if (p) {
+      SFX.tap();
+      pick[+p.dataset.pick] = p.dataset.nm;
+      if (pick[0] && pick[1] && pick[0] !== pick[1]) renderBattle(); else renderPick();
+      return;
+    }
+    const go = e.target.closest("[data-go]");
+    if (go) { SFX.tap(); close(); selectSchool(go.dataset.go); }
+  });
+
+  $("#quizBtn")?.addEventListener("click", () => { SFX.tap(); quizStart(); ovl.classList.add("show"); });
+  $("#powerBtn")?.addEventListener("click", () => { SFX.tap(); powerStart(); ovl.classList.add("show"); });
+  $("#battleBtn")?.addEventListener("click", () => { SFX.tap(); pick = [null, null]; renderPick(); ovl.classList.add("show"); });
+})();
+
 /* 共有リンク復元 */
 (function(){
   let hs = ""; try { hs = location.hash || ""; } catch(e){}
@@ -1479,16 +2161,6 @@ $("#detail").addEventListener("click", e => {
     if (SCHOOL_GROUPS.some(g => g.name === name)) selectSchool(name);
   }
 })();
-</script>
-
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js').catch(error => {
-        console.error('Service Worker registration failed:', error);
-      });
-    });
-  }
 </script>
 </body>
 </html>
