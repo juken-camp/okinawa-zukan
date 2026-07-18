@@ -332,6 +332,11 @@ body.detail #detail{display:block}
 .sec{margin-top:18px}
 .sec-t{font-family:var(--pop);font-size:14px;display:inline-block;background:var(--ink);color:#fff;border-radius:10px;padding:3px 12px;transform:rotate(-1deg)}
 .tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:10px;border:2.5px solid var(--ink);border-radius:14px;background:#fff}
+.cr-stats{margin-top:10px;border:2.5px solid var(--ink);border-radius:14px;background:#fff;overflow:hidden}
+.cr-row{display:flex;justify-content:space-between;align-items:center;padding:9px 14px;font-size:14px;font-weight:700;border-bottom:2px solid #F0EADA}
+.cr-row:nth-child(even){background:#FDFAF0}
+.cr-row:last-child{border-bottom:0}
+.cr-row b{font-family:var(--pop);font-size:15px;font-weight:400;font-variant-numeric:tabular-nums}
 table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:340px}
 th,td{padding:8px 10px;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;border-bottom:2px solid #F0EADA}
 tr:last-child td{border-bottom:0}
@@ -1241,6 +1246,45 @@ function fateTitle(dept){
   return "運命の探求者";
 }
 
+/* ================= 📎 学科の表示統合（集計が学科全体でしか取れないケース） ================= */
+function mergedDeptName(names){
+  const m = names.map(n => n.match(/^(.*?)（(.*)）$/));
+  if (m.every(x => x) && new Set(m.map(x => x[1])).size === 1) {
+    return m[0][1] + "（" + m.map(x => x[2]).join("・") + "）";
+  }
+  return names.join("／");
+}
+function buildDisplayDepts(g){
+  const used = new Array(g.depts.length).fill(false);
+  const out = [];
+  for (let i = 0; i < g.depts.length; i++) {
+    if (used[i]) continue;
+    const s = g.depts[i];
+    const note = s.y && s.y["2025"] && s.y["2025"].dataScopeNote;
+    used[i] = true;
+    if (!note) { out.push(s); continue; }
+    const group = [s];
+    const sKey = JSON.stringify(s.y);
+    for (let j = i + 1; j < g.depts.length; j++) {
+      if (used[j]) continue;
+      const t = g.depts[j];
+      if (t.track !== s.track) continue;
+      if (JSON.stringify(t.y) !== sKey) continue;
+      group.push(t); used[j] = true;
+    }
+    if (group.length === 1) { out.push(s); continue; }
+    out.push({
+      id: group[0].id,
+      _ids: group.map(x => x.id),
+      dept: mergedDeptName(group.map(x => x.dept)),
+      track: s.track,
+      y: s.y,
+      name: g.name
+    });
+  }
+  return out;
+}
+
 /* ================= ⚔️ 高校くらべバトルの比較値 ================= */
 function battleStats(g){
   let dev = null, nai = null, r = null, cap = 0;
@@ -1634,8 +1678,10 @@ function rangeOf(td, sel, res, key){
 function deptCard(s, i){
   const d = s.y["2025"] || {};
   const gk = gkOf(s);
-  const t = TOKU[s.id] || [];
-  const [cap, tokuPct, waku, hiju] = t;
+  const ids = s._ids || [s.id];
+  const toks = ids.map(id => TOKU[id] || []);
+  const cap = toks.some(t => t[0] != null) ? toks.reduce((a, t) => a + (t[0] || 0), 0) : null;
+  const [, tokuPct, waku, hiju] = toks[0] || [];
   let h = `<section class="dcard" id="dept-${i}">${sticker(d)}
     <h3>${esc(s.dept)}</h3>
     <div class="hbadges">
@@ -1694,7 +1740,8 @@ function deptCard(s, i){
   }
 
   if (d.dataScopeNote) h += `<p class="note">※ ${esc(d.dataScopeNote)}</p>`;
-  if (SCHOOL_MEMO[s.id]) h += `<div class="memo">${esc(SCHOOL_MEMO[s.id])}</div>`;
+  const memoText = ids.map(id => SCHOOL_MEMO[id]).find(Boolean);
+  if (memoText) h += `<div class="memo">${esc(memoText)}</div>`;
   h += `</section>`;
   return h;
 }
@@ -1726,8 +1773,9 @@ function careerHtml(name){
   let h = `<section class="dcard career"><span class="sec-t">🎓 進路のじっせき</span>
     <div class="cyr">${esc(c.year || "")}</div>`;
   if (c.stats && c.stats.length) {
-    h += `<div class="tblwrap"><table><tr><th>進路</th><th>人数</th></tr>` +
-      c.stats.map(([k, v]) => `<tr><td>${esc(k)}</td><td>${esc(v)}</td></tr>`).join("") + `</table></div>`;
+    h += `<div class="cr-stats">` +
+      c.stats.map(([k, v]) => `<div class="cr-row"><span>${esc(k)}</span><b>${esc(v)}</b></div>`).join("") +
+      `</div>`;
   }
   if (c.study && c.study.length) {
     h += `<div class="sec"><span class="sec-t" style="font-size:12px">🏆 主な合格先</span>
@@ -1772,9 +1820,10 @@ function selectSchool(name){
     encodeURIComponent("沖縄県立" + g.name + "高等学校 " + addr);
   const gks = [...new Set(g.depts.map(gkOf))];
   const sum = schoolSummary(g);
+  const dispDepts = typeof buildDisplayDepts === "function" ? buildDisplayDepts(g) : g.depts;
 
-  const nav = g.depts.length > 1
-    ? `<nav class="dept-nav">${g.depts.map((d, i) => `<button data-goto="dept-${i}">${esc(d.dept)}</button>`).join("")}</nav>`
+  const nav = dispDepts.length > 1
+    ? `<nav class="dept-nav">${dispDepts.map((d, i) => `<button data-goto="dept-${i}">${esc(d.dept)}</button>`).join("")}</nav>`
     : "";
 
   const zn = typeof ZUKAN_NOTES !== "undefined" ? ZUKAN_NOTES[g.name] : null;
@@ -1842,7 +1891,7 @@ function selectSchool(name){
     ${noteHtml}
     ${fateHtml}
     ${nav}
-    ${g.depts.map(deptCard).join("")}
+    ${dispDepts.map(deptCard).join("")}
     ${careerHtml(g.name)}
     ${rivalHtml}
     <p class="note">数値は2025年度入試のプレ入試追跡調査等にもとづく参考値です。合格を保証するものではありません。</p>`;
