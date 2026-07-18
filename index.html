@@ -139,10 +139,10 @@ body.detail .zcount{display:block}
 
 /* ずかん検定 */
 .qz-tag{font-size:11px;font-weight:800;background:var(--ink);color:var(--yellow);border-radius:7px;padding:1px 9px}
-.qz-fb{font-family:var(--pop);font-size:15px;text-align:center;margin-top:10px}
+.qz-fb{font-family:var(--pop);font-size:15px;text-align:center;margin-top:10px;min-height:24px}
 .qz-fb.ok{color:var(--teal)}
 .qz-fb.ng{color:var(--pink)}
-.qz-note{font-size:12px;font-weight:800;text-align:center;color:#6E6248;margin-top:4px}
+.qz-note{font-size:12px;font-weight:800;text-align:center;color:#6E6248;margin-top:4px;min-height:20px}
 .dq-opt.correct{background:#D8F7F2;border-color:var(--teal)}
 .dq-opt.wrongpick{background:#FFE3E7;border-color:var(--pink)}
 .qz-score{font-family:var(--pop);font-size:38px;text-align:center;margin:8px 0 2px}
@@ -169,7 +169,7 @@ input[type=range].pw-slide{width:100%;accent-color:var(--pink);height:28px}
 /* バトル */
 .bt-pick{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;margin-top:12px}
 .bt-vs{font-family:var(--pop);font-size:17px;color:var(--pink)}
-.bt-in{width:100%;font:inherit;font-weight:700;font-size:14px;border:2.5px solid var(--ink);border-radius:12px;padding:9px 10px;background:#fff}
+.bt-in{width:100%;font:inherit;font-weight:700;font-size:16px;border:2.5px solid var(--ink);border-radius:12px;padding:9px 10px;background:#fff}
 .bt-sug{display:grid;gap:6px;margin-top:8px;max-height:150px;overflow-y:auto}
 .bt-sug button{text-align:left;font-size:13px;font-weight:800;background:#FFF3C4;border:2px solid var(--ink);border-radius:10px;padding:7px 10px}
 .bt-arena{margin-top:10px}
@@ -191,6 +191,12 @@ input[type=range].pw-slide{width:100%;accent-color:var(--pink);height:28px}
 .gacha[disabled]{opacity:.6;pointer-events:none}
 .joke-note{font-size:11px;font-weight:700;color:#8B7E5E;max-width:340px;line-height:1.7}
 .gc-joke{font-size:10.5px;font-weight:800;color:#8B7E5E;margin-top:12px;border-top:2px dashed #E4DCC2;padding-top:8px}
+.gcard{overflow:visible}
+.govl.done .gc-photo.show,.govl.done .gc-name{cursor:pointer}
+.gc-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:14px}
+.gc-act{font-family:var(--pop);font-size:13.5px;border:var(--bd);border-radius:13px;padding:11px 6px;box-shadow:3px 3px 0 var(--ink);background:#fff;transition:transform .07s}
+.gc-act:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.gc-act.open{background:var(--teal);color:#fff}
 .countdown{font-family:var(--pop);font-size:14px;background:var(--ink);color:#fff;border-radius:14px;padding:9px 18px;box-shadow:4px 4px 0 rgba(29,29,29,.25);transform:rotate(-1deg)}
 .countdown b{color:var(--yellow);font-size:20px;font-variant-numeric:tabular-nums}
 .countdown small{display:block;font-family:var(--body);font-size:10.5px;font-weight:800;color:#CFC6A8}
@@ -388,11 +394,16 @@ footer .fbox{display:inline-block;background:#fff;border:var(--bd);border-radius
 </div>
 <div class="govl" id="govl" aria-hidden="true">
   <div class="gcard">
+    <button class="dq-close" id="gcClose">×</button>
     <div class="gc-label" id="gcLabel">運命の学校は……</div>
     <div class="gc-name" id="gcName">？？？</div>
     <div class="gc-yomi" id="gcYomi">&nbsp;</div>
     <img class="gc-photo" id="gcPhoto" alt="">
     <span class="gc-lv" id="gcLv">Lv.??</span>
+    <div class="gc-actions" id="gcActions" hidden>
+      <button class="gc-act open" id="gcOpen">👀 この学校を見る</button>
+      <button class="gc-act" id="gcAgain">🔁 もう一回まわす</button>
+    </div>
     <div class="gc-joke">※これはジョーク機能。志望校は自分で決めてね</div>
   </div>
 </div>
@@ -1436,9 +1447,11 @@ function rollGacha(){
   const ovl = $("#govl"), nameEl = $("#gcName"), yomiEl = $("#gcYomi"), lvEl = $("#gcLv"), labelEl = $("#gcLabel");
   labelEl.textContent = "運命の学校は……";
   $("#gcPhoto").classList.remove("show");
+  $("#gcActions").hidden = true;
   lvEl.style.opacity = 0;
   ovl.classList.add("show", "rolling");
   ovl.classList.remove("done");
+  ovl._winner = null;
 
   /* だんだん遅くなるドラムロール */
   let delay = 55;
@@ -1464,17 +1477,37 @@ function rollGacha(){
       ovl.classList.remove("rolling");
       ovl.classList.add("done");
       confetti(ovl.querySelector(".gcard"));
-      gachaTimer = setTimeout(() => {
-        if (gachaCancelled) return;
-        ovl.classList.remove("show", "done");
-        $("#gachaBtn").removeAttribute("disabled");
-        gachaBusy = false;
-        selectSchool(winner.name);
-      }, 1400);
+      ovl._winner = winner.name;
+      $("#gcActions").hidden = false;
+      $("#gachaBtn").removeAttribute("disabled");
+      gachaBusy = false;
     }
   };
   spin();
 }
+
+(function(){
+  const ovl = $("#govl");
+  ovl.addEventListener("click", e => {
+    const done = !gachaBusy && ovl._winner;
+    if (e.target.closest("#gcClose")) {
+      if (gachaBusy) { gachaCancelled = true; clearTimeout(gachaTimer); gachaBusy = false; $("#gachaBtn").removeAttribute("disabled"); }
+      ovl.classList.remove("show", "rolling", "done");
+      ovl._winner = null;
+      return;
+    }
+    if (e.target.closest("#gcAgain")) { SFX.tap(); ovl._winner = null; rollGacha(); return; }
+    if (done && (e.target.closest("#gcOpen") || e.target.closest(".gc-photo") || e.target.closest(".gc-name"))) {
+      SFX.tap();
+      const nm = ovl._winner;
+      ovl.classList.remove("show", "done");
+      ovl._winner = null;
+      selectSchool(nm);
+      return;
+    }
+    if (e.target === ovl && done) { ovl.classList.remove("show", "done"); ovl._winner = null; }
+  });
+})();
 
 function confetti(card){
   const emo = ["🎉", "✨", "⭐", "🎊", "🌺"];
