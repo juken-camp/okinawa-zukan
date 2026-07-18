@@ -342,7 +342,7 @@ footer .fbox{display:inline-block;background:#fff;border:var(--bd);border-radius
 <div class="wrap">
   <header class="top">
     <h1 class="logo"><span class="pref">沖縄県立</span><span class="z">高校ずかん</span></h1>
-    <div class="sub">沖縄県立高校入試｜運命の学校を探せ</div>
+    <div class="sub">沖縄県立高校入試｜運命の学校を探せ！編</div>
   </header>
 
   <div class="searchbar">
@@ -1057,8 +1057,8 @@ const ZUKAN_NOTES = {
 const SHINDAN_Q = [
   { q:"通いたいエリアは？", icon:"🗺️", opts:[
     ["南部でさがす","南部"],["中部でさがす","中部"],["北部でさがす","北部"],["宮古・八重山","宮古・八重山"],["県内ぜんぶ見せて",null]] },
-  { q:"いまの内申点、正直どのへん？（165点満点）", icon:"📓", opts:[
-    ["〜85（これから巻き返す）",80],["86〜110（まんなか辺）",100],["111〜135（けっこう強い）",123],["136〜（ほぼ最強）",145],["わからない・ヒミツ",null]] },
+  { q:"いまの評定平均、正直どのへん？（5段階）", icon:"📓", opts:[
+    ["〜2.9（これから巻き返す）",86],["3.0〜3.4（まんなか辺）",106],["3.5〜3.9（わりと強い）",122],["4.0〜4.4（かなり強い）",139],["4.5〜（ほぼ最強）",155],["わからない・ヒミツ",null]] },
   { q:"学びたいのはどの系統？", icon:"🎒", opts:[
     ["普通科でガチ進学","進学"],["英語・国際","国際"],["理数・サイエンス","理数"],["商業・ビジネス","商業"],["工業・ものづくり・IT","工業"],["農業・自然・食","農業"],["海・水産","水産"],["芸術・文化","芸術"],["スポーツ","スポーツ"],["看護・福祉","福祉"],["まだ決めてない","未定"]] },
   { q:"学校の規模、どっち派？", icon:"🏫", opts:[
@@ -1982,25 +1982,32 @@ function makeFateCard(top){
   }
 
   /* ---------- 💪 戦闘力サーチ ---------- */
-  let pwNai = 100, pwArea = null;
+  let pwHyotei = 3.5, pwArea = null;
+  const hyoteiToNai = h => Math.round(h * 33); /* 評定平均×33 ≒ 内申(165点満点) */
   function powerStart(){ renderPowerForm(); }
   function renderPowerForm(){
     card.innerHTML = `
       <button class="dq-close" data-act="close">×</button>
       <div class="dq-icon">💪</div>
       <div class="dr-title">戦闘力サーチ</div>
-      <p class="dr-note" style="margin-top:4px">キミの内申点（戦闘力）を入れると、いま戦えるフィールドが見える。</p>
+      <p class="dr-note" style="margin-top:4px">キミの評定平均（戦闘力）を入れると、いま戦えるフィールドが見える。</p>
       <div class="pw-form">
-        <div class="pw-row"><span>📓 内申</span><input type="range" class="pw-slide" id="pwSlide" min="45" max="165" value="${pwNai}"><span class="pw-num" id="pwNum">${pwNai}</span></div>
+        <div class="pw-row"><span>📓 評定</span><input type="range" class="pw-slide" id="pwSlide" min="15" max="50" value="${Math.round(pwHyotei * 10)}"><span class="pw-num" id="pwNum">${pwHyotei.toFixed(1)}</span></div>
+        <p class="dr-note" style="text-align:center;margin-top:0">内申めやす：<b id="pwNai">${hyoteiToNai(pwHyotei)}</b>／165点（評定平均×33で換算）</p>
         <div class="pw-area" id="pwArea">
           ${[null, ...AREAS].map(a => `<button class="pw-a ${a === pwArea ? "on" : ""}" data-area="${a ?? ""}">${a ?? "県内ぜんぶ"}</button>`).join("")}
         </div>
         <button class="pw-go" data-act="pwgo">⚡ 戦えるフィールドを見る</button>
       </div>`;
     const slide = card.querySelector("#pwSlide");
-    slide.addEventListener("input", () => { pwNai = +slide.value; card.querySelector("#pwNum").textContent = pwNai; });
+    slide.addEventListener("input", () => {
+      pwHyotei = +slide.value / 10;
+      card.querySelector("#pwNum").textContent = pwHyotei.toFixed(1);
+      card.querySelector("#pwNai").textContent = hyoteiToNai(pwHyotei);
+    });
   }
   function renderPowerResult(){
+    const pwNai = hyoteiToNai(pwHyotei);
     const R = powerSearch(pwNai, pwArea);
     const item = x => `<button class="pw-item" data-go="${esc(x.g.name)}">
         <span class="pw-lv">${lvTag(schoolLv(x.g))}</span>
@@ -2011,7 +2018,7 @@ function makeFateCard(top){
     card.innerHTML = `
       <button class="dq-close" data-act="close">×</button>
       <div class="dq-icon">💪</div>
-      <div class="dr-title">戦闘力 ${pwNai}${pwArea ? "・" + esc(pwArea) : ""} のフィールド</div>
+      <div class="dr-title">評定${pwHyotei.toFixed(1)}（内申めやす${pwNai}）${pwArea ? "・" + esc(pwArea) : ""} のフィールド</div>
       ${sec("🎯 ちょうどいい戦場（±8）", R.just, "この帯はエリアを広げてみよう")}
       ${sec("🔥 挑戦する価値あり（+9〜24）", R.challenge, "このエリアの上は…もう頂点かも")}
       ${sec("🛡 セーフティゾーン（-9〜32）", R.safe, "下に余裕なし。挑戦あるのみ！")}
@@ -2019,7 +2026,7 @@ function makeFateCard(top){
         <button class="dr-btn" data-act="pwback">← 条件をかえる</button>
         <button class="dr-btn" data-act="close">とじる</button>
       </div>
-      <p class="dr-note">目安内申（165点満点）との差で機械的に仕分けた参考情報。数字の右は「学校の目安 − キミ」。当日点や倍率で結果は動くので、最後は過去問と相談！</p>`;
+      <p class="dr-note">評定平均×33で内申（165点満点）に換算し、各校の目安内申との差で機械的に仕分けた参考情報。数字の右は「学校の目安 − キミ」。当日点や倍率で結果は動くので、最後は過去問と相談！</p>`;
   }
 
   /* ---------- ⚔️ 高校くらべバトル ---------- */
